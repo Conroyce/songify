@@ -13,3 +13,8 @@ get '/' do
   erb :index
 end
 
+get '/puppies' do 
+  @message = "There are puppies"
+  @remarks = ["puppy1", "puppy2", "puppy3"]
+  erb:index
+end  

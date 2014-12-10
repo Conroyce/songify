@@ -13,6 +13,16 @@
         </li>
       <% end %>
     </ul>
+    <form action="/albums" mothod="POST">
+      <label for="title">Song Name</label>
+      <input type="text" name="title" id="title" placeholder="Enter Title"><br>
+      <label for="year">Year</label>
+      <input type="text" name="year" id="year" placeholder="Enter Year"><br>
+      <label for="genre">Genre</label>
+      <input type="text" name="genre" id="genre" placeholder="Enter Genre"><br>
+      <label for="addImg">Album Cover</label>
+      <input type="text" name="addImg" id="addImg" placeholder="Paste Image File"><br>
+    </form>
   </div>
 </body>
 </html>
