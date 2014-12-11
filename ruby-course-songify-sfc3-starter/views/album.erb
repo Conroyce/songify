@@ -41,9 +41,9 @@
     <% @albums_arr.each do |part| %>
         <h3><%= part.title %></h3>
         <ul>
-          <li><a href="album.erb"><%= part.year %></a></li>
-          <li><a href="album.erb"><%= part.genre %></a></li>
-          <li><a href><%= part.link %></a></li>
+          <li><%= part.year %></li>
+          <li><%= part.genre %></li>
+          <li><%= part.link %></li>
         </ul>  
     <% end %>   
   </div>

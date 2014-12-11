@@ -1,5 +1,5 @@
 module Songify
-  class AddAlbum
+  class Album
     attr_accessor :link, :genre, :title
     attr_reader :year
     def initialize(params)
