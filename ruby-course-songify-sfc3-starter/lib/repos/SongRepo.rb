@@ -1,5 +1,5 @@
 module Songify::Repos
-  class Songs < Repos
+  class Songs < Repo
 
     def create_table
       command = <<-SQL
@@ -7,7 +7,8 @@ module Songify::Repos
           id SERIAL PRIMARY KEY,
           title text,
           artist text,
-          length text
+          link text,
+          albumId integer REFERENCES albums( id )
           );
       SQL
       @db.exec(command)
@@ -23,11 +24,31 @@ module Songify::Repos
     def create(params)
       title = params[:title]
       artist = params[:artist]
-      length = params[:length]
+      link = params[:link]
+      albumId = params[:albumId]
       command = <<-SQL
-        INSERT INTO songs(title,artist,length)
-        VALUES ()
+        INSERT INTO songs(title,artist,link,albumId)
+        VALUES ('#{title}','#{artist}','#{link}','#{albumId}')
+        RETURNING *;
       SQL
+      result = @db.exec(command)
+
+      build_song(result.first)
     end  
+
+
+    def build_song(params)
+      title = params['title']
+      artist = params['artist']
+      link = params['link']
+      albumId = params['albumId']
+     
+      Songify::Song.new({
+        title: title,
+        artist: artist,
+        link: link,
+        albumId: albumId.to_i
+      })
+    end
   end  
 end    

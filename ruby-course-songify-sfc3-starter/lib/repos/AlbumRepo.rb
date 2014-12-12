@@ -16,7 +16,7 @@ module Songify::Repos
 
     def drop_table
       command = <<-SQL
-        DROP TABLE if exists albums
+        DROP TABLE if exists albums cascade
       SQL
       @db.exec(command)
     end 
@@ -26,6 +26,7 @@ module Songify::Repos
       year = params[:year]
       genre = params[:genre]
       link = params[:link]
+
       command = <<-SQL
         INSERT INTO albums(title,year,genre,link)
         VALUES ('#{title}','#{year}','#{genre}','#{link}')
@@ -36,6 +37,7 @@ module Songify::Repos
     end  
 
     def find_by(params)
+      id = params[:id].to_i
       title = params[:title]
       year = params[:year]
       genre = params[:genre]
@@ -50,6 +52,10 @@ module Songify::Repos
       elsif genre
         command = <<-SQL
           SELECT * FROM albums WHERE genre = '#{genre}'
+        SQL
+      elsif id 
+        command = <<-SQL
+          SELECT * FROM albums WHERE id = '#{id}'
         SQL
       end  
       result = @db.exec(command)
@@ -79,13 +85,15 @@ module Songify::Repos
     end
 
     def build_album(params)
+      id = params["id"]
       title = params["title"]
       year = params["year"].to_i
       genre = params["genre"]
       link = params["link"]
       Songify::Album.new({
+        id: id.to_i,
         title: title,
-        year: year,
+        year: year.to_i,
         genre: genre,
         link: link
       })

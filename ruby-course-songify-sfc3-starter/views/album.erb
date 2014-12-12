@@ -18,34 +18,14 @@
         </li>
       <% end %>
     </ul>
-    <form action="/" method="POST">
-      <label for="title">Album Name</label>
-      <input type="text" name="title" id="title" required placeholder="Enter Title"><br>
-      <label for="year">Year</label>
-      <input type="text" name="year" id="year" placeholder="Enter Year"><br>
-      <label for="link">Album Cover</label>
-      <input type="text" name="link" id="link" placeholder="Paste Image File"><br>
-      <label for="genre">Genre</label>
-      <select name="genre">
-        <option value="Pop">Pop</option>
-        <option value="Rap">Rap</option>
-        <option value="Rock">Rock</option>
-        <option value="Country">Country</option>
-        <option value="Soundtrack">Soundtrack</option>
-        <option value="Alternative">Alternative</option>
-        <option value="R&B">R&B</option>
-        <option value="Classics">Classics</option>
-      </select>
-      <input type="submit">
-    </form>
-    <% @albums_arr.each do |part| %>
-        <h3><%= part.title %></h3>
+   
+    
+        <h3><%= @album.title %></h3>
         <ul>
-          <li><%= part.year %></li>
-          <li><%= part.genre %></li>
-          <li><%= part.link %></li>
-        </ul>  
-    <% end %>   
+          <li><%= @album.year %></li>
+          <li><%= @album.genre %></li>
+          <li><%= @album.link %></li>
+        </ul>    
   </div>
 </body>
 </html>

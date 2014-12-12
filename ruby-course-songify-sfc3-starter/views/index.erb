@@ -39,7 +39,7 @@
       <input type="submit">
     </form>
     <% @albums_arr.each do |part| %>
-        <h3><%= part.title %></h3>
+        <h3><a href="/albums/<%= part.id %>"><%= part.title %></h3>
         <ul>
           <li><a href="album.erb"><%= part.year %></a></li>
           <li><a href="album.erb"><%= part.genre %></a></li>
