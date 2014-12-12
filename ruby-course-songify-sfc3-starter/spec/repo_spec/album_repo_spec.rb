@@ -10,13 +10,13 @@ describe Songify::Repos::Albums do
   describe 'create and find_by' do
     it 'adds a new album to the album list' do
       lonelyisland = albums.create({
-        title: 'Incredibad',
+        title: 'Incredible',
         year: 2009,
         genre: 'rap',
         link: 'link.jpg'
       }) 
       expect(lonelyisland).to be_a(Songify::Album)
-      expect(lonelyisland.title).to eq('Incredibad')
+      expect(lonelyisland.title).to eq('Incredible')
     end 
 
     it 'retrieves an existing album' do
@@ -37,7 +37,7 @@ describe Songify::Repos::Albums do
   describe 'update' do
     it 'changes tile, genre, or image link' do
       albums.create({
-        title: 'Incredibad',
+        title: 'Incredible',
         year: 2009,
         genre: 'rap',
         link: 'link.jpg'
@@ -51,7 +51,7 @@ describe Songify::Repos::Albums do
   describe 'get all' do
     it 'retrieves all albums from the database' do
       albums.create({
-        title: 'Incredibad',
+        title: 'Incredible',
         year: 2009,
         genre: 'rap',
         link: 'link.jpg'

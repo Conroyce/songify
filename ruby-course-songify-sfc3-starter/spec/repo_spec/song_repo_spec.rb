@@ -54,4 +54,40 @@ describe Songify::Repos::Songs do
       expect(new_title.title).to eq("We Are The Champions")
     end  
   end  
+
+  describe 'get all songs' do
+    it 'will retrieve all songs with the same album id' do
+      album.create({
+        title: 'Cool Album',
+        year: 1992,
+        genre: 'Pop',
+        link: 'neat.com'
+      })
+      song.create({
+        title: 'Tubthumper',
+        artist: 'Chumbawumba',
+        link: 'youtube.com',
+      })
+      song.create({
+        title: 'I will always love you',
+        artist: 'Whitney Houston',
+        link: 'coolvid.com'
+      })
+      songs = song.get_all_songs(artist: 'Chumbawumba')
+      binding.pry
+      expect(songs.length).to eq(2)
+      expect(songs[0]).to be_a(Songify::Song)
+    end  
+  end  
 end
+
+
+
+
+
+
+
+
+
+
+

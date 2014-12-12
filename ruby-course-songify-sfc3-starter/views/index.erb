@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Songify</title>
+  <link rel="stylesheet" href="../public/css/main.css">
   <style>
     input{
       margin-top: 7px;
@@ -9,43 +10,44 @@
   </style>
 </head>
 <body>
-  <h1><a href="index.erb"><%= @message %></a></h1>
-  <div>
-    <ul>
-      <% @remarks.each do |remark| %>
-        <li> 
-          <%= remark %>
-        </li>
-      <% end %>
-    </ul>
-    <form action="/" method="POST">
-      <label for="title">Album Name</label>
-      <input type="text" name="title" id="title" required placeholder="Enter Title"><br>
-      <label for="year">Year</label>
-      <input type="text" name="year" id="year" placeholder="Enter Year"><br>
-      <label for="link">Album Cover</label>
-      <input type="text" name="link" id="link" placeholder="Paste Image File"><br>
-      <label for="genre">Genre</label>
-      <select name="genre">
-        <option value="Pop">Pop</option>
-        <option value="Rap">Rap</option>
-        <option value="Rock">Rock</option>
-        <option value="Country">Country</option>
-        <option value="Soundtrack">Soundtrack</option>
-        <option value="Alternative">Alternative</option>
-        <option value="R&B">R&B</option>
-        <option value="Classics">Classics</option>
-      </select>
-      <input type="submit">
-    </form>
-    <% @albums_arr.each do |part| %>
-        <h3><a href="/albums/<%= part.id %>"><%= part.title %></h3>
-        <ul>
-          <li><a href="album.erb"><%= part.year %></a></li>
-          <li><a href="album.erb"><%= part.genre %></a></li>
-          <li><a href><%= part.link %></a></li>
-        </ul>  
-    <% end %>   
+  <div class="main-wrapper"
+    <h1><a href="/albums"><%= @message %></a></h1>
+    
+      <ul>
+        <% @remarks.each do |remark| %>
+          <li> 
+            <%= remark %>
+          </li>
+        <% end %>
+      </ul>
+      <form action="/" method="POST">
+        <label for="title">Album Name</label>
+        <input type="text" name="title" id="title" required placeholder="Enter Title"><br>
+        <label for="year">Year</label>
+        <input type="text" name="year" id="year" placeholder="Enter Year"><br>
+        <label for="link">Album Cover</label>
+        <input type="text" name="link" id="link" placeholder="Paste Image File"><br>
+        <label for="genre">Genre</label>
+        <select name="genre">
+          <option value="Pop">Pop</option>
+          <option value="Rap">Rap</option>
+          <option value="Rock">Rock</option>
+          <option value="Country">Country</option>
+          <option value="Soundtrack">Soundtrack</option>
+          <option value="Alternative">Alternative</option>
+          <option value="R&B">R&B</option>
+          <option value="Classics">Classics</option>
+        </select>
+        <input type="submit">
+      </form>
+      <% @albums_arr.each do |part| %>
+          <h3><a href="/albums/<%= part.id %>"><%= part.title %></h3>
+          <ul>
+            <li><a href="album.erb"><%= part.year %></a></li>
+            <li><a href="album.erb"><%= part.genre %></a></li>
+            <li><a href><%= part.link %></a></li>
+          </ul>  
+      <% end %>   
   </div>
 </body>
 </html>

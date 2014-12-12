@@ -9,23 +9,24 @@
   </style>
 </head>
 <body>
-  <h1><a href="index.erb"><%= @message %></a></h1>
+  <h1><a href="/albums"><%= @message %></a></h1>
   <div>
+      <h3><%  %></h3>
     <ul>
-      <% @remarks.each do |remark| %>
-        <li> 
-          <%= remark %>
-        </li>
-      <% end %>
-    </ul>
-   
-    
-        <h3><%= @album.title %></h3>
-        <ul>
-          <li><%= @album.year %></li>
-          <li><%= @album.genre %></li>
-          <li><%= @album.link %></li>
-        </ul>    
+    <% @songs.each do |song| %>
+      <li><%= song.title %></li>
+      <li><%= song.artist %></li>
+      <li><%= song.link %></li>
+    <% end %>
+    <form action="/albums/<%= @album_page %>" method="POST">
+      <label for="title">Song Name</label>
+      <input type="text" name="title" id="title" required placeholder="Enter Title"><br>
+      <label for="artist">Artist</label>
+      <input type="text" name="artist" id="artist" placeholder="Enter Artist"><br>
+      <label for="link">Video Link</label>
+      <input type="text" name="link" id="link" placeholder="Paste Video"><br>
+      <input type="submit">
+    </form>  
   </div>
 </body>
 </html>
