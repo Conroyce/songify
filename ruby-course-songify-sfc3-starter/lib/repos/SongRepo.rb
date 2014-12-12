@@ -61,7 +61,19 @@ module Songify::Repos
       build_song(result.first)
     end  
 
-    
+    def update(params)
+      title = params[:title]
+      artist = params[:artist]
+      link = params[:link]
+      command = <<-SQL
+        UPDATE songs
+        SET title = '#{title}'
+        WHERE artist = '#{artist}'
+        RETURNING *;
+      SQL
+      result = @db.exec(command)
+      build_song(result.first)
+    end  
 
     def build_song(params)
       title = params['title']

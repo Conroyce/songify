@@ -40,4 +40,18 @@ describe Songify::Repos::Songs do
       expect(songs.artist).to eq('OneRepublic')
     end  
   end 
+
+  describe 'update' do
+    it 'will update title' do
+      song.create({
+        title: 'We Will Rock You',
+        artist: 'Queen',
+        link: 'youtube.com',
+        albumId:1
+      })
+      new_title = song.update({title:'We Are The Champions', artist: 'Queen'})
+      expect(new_title).to be_a(Songify::Song)
+      expect(new_title.title).to eq("We Are The Champions")
+    end  
+  end  
 end
