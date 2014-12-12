@@ -19,7 +19,7 @@ module Songify
   end
 end
   
-
+require_relative './entity/playlist.rb'
 require_relative './entity/album.rb'
 require_relative './entity/song.rb'
 require_relative './repos/repo.rb'

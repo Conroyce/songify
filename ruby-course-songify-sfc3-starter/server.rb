@@ -31,6 +31,10 @@ get '/albums/:id' do
   erb :album
 end 
 
+get '/playlists' do
+  erb :playlist
+end  
+
 post '/' do
   puts params
   title = params[:title]
@@ -59,7 +63,7 @@ post '/albums/:id' do
     link: link,
     album_id: id
   })
-redirect "/albums/:#{id}"
+redirect "/albums/#{id}"
 end 
 
 # 1.get album id
