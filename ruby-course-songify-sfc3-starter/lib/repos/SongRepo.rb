@@ -32,10 +32,36 @@ module Songify::Repos
         RETURNING *;
       SQL
       result = @db.exec(command)
-
       build_song(result.first)
     end  
 
+    def find_by(params)
+      title = params[:title]
+      artist = params[:artist]
+      link = params[:link]
+      albumId = params[:albumId].to_i
+      if title
+        command = <<-SQL
+          SELECT * FROM songs WHERE title = '#{title}'
+        SQL
+      elsif artist
+        command = <<-SQL
+          SELECT * FROM songs WHERE artist = '#{artist}'
+        SQL
+      elsif link
+        command = <<-SQL
+          SELECT * FROM songs WHERE link = '#{link}'
+        SQL
+      elsif albumId
+        command = <<-SQL
+          SELECT * FROM songs WHERE albumId = '#{albumId}'
+        SQL
+      end
+      result = @db.exec(command)
+      build_song(result.first)
+    end  
+
+    
 
     def build_song(params)
       title = params['title']
