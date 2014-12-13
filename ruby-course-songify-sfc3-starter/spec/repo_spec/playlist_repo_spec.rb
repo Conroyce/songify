@@ -16,5 +16,20 @@ describe Songify::Repos::Playlists do
       expect(play).to be_a(Songify::Playlist)
       expect(play.name).to eq("playlist_1")
     end  
+  end 
+
+  describe 'update' do
+    it 'updates name of a playlist' do
+      playlist.create({
+        name: 'playlist_2',
+        description: '2nd best playlist ever'
+      })
+      play = playlist.update({
+        name: 'playlist_best',
+        description: '2nd best playlist ever'
+        })
+      expect(play).to be_a(Songify::Playlist)
+      expect(play.name).to eq('playlist_best')
+    end 
   end  
 end  

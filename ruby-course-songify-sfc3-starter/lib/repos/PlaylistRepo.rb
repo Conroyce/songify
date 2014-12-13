@@ -28,11 +28,25 @@ module Songify::Repos
         RETURNING *;
       SQL
       result = @db.exec(command)
-
       build_playlist(result.first)
     end 
     # SELECT s.title FROM songs s, p_songs j, playlist p
     #   WHERE s.id = j.song_id AND j.playlist_id = j.id
+
+    def update(params)
+      name = params[:name]
+      description = params[:description]
+      command = <<-SQL
+        UPDATE playlists
+        SET name = '#{name}'
+        WHERE description = '#{description}'
+        RETURNING *;
+      SQL
+      result = @db.exec(command)
+      build_playlist(result.first)
+      
+    end  
+
     def build_playlist(params)
       id = params["id"]
       name = params["name"]
