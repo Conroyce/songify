@@ -15,6 +15,13 @@ module Songify
     @song_repo = repo
   end
     
+  def self.playlist_repo
+    @playlist_repo
+  end  
+
+  def self.playlist_repo=(repo)
+    @playlist_repo = repo
+  end  
   module Repos
   end
 end
@@ -23,8 +30,10 @@ require_relative './entity/playlist.rb'
 require_relative './entity/album.rb'
 require_relative './entity/song.rb'
 require_relative './repos/repo.rb'
+require_relative './repos/PlaylistRepo.rb'
 require_relative './repos/AlbumRepo.rb'
 require_relative './repos/SongRepo.rb'
 
 Songify.album_repo = Songify::Repos::Albums.new
 Songify.song_repo = Songify::Repos::Songs.new
+Songify.playlist_repo = Songify::Repos::Playlists.new

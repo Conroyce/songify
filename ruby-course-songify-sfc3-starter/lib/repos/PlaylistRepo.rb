@@ -1,5 +1,5 @@
 module Songify::Repos
-  class Playlist <Repos
+  class Playlists < Repo
 
     def create_table
       command = <<-SQL
@@ -9,16 +9,39 @@ module Songify::Repos
           description text
         );
       SQL
+      @db.exec(command)
     end  
 
     def drop_table
       command = <<-SQL
         DROP TABLE if exists playlists
       SQL
+      @db.exec(command)
     end  
 
-    
+    def create(params)
+      name = params[:name]
+      description = params[:description]
+      command = <<-SQL
+        INSERT INTO playlists(name,description)
+        VALUES ('#{name}','#{description}')
+        RETURNING *;
+      SQL
+      result = @db.exec(command)
+
+      build_playlist(result.first)
+    end 
     # SELECT s.title FROM songs s, p_songs j, playlist p
     #   WHERE s.id = j.song_id AND j.playlist_id = j.id
+    def build_playlist(params)
+      id = params["id"]
+      name = params["name"]
+      description = params["description"]
+      Songify::Playlist.new({
+        id: id,
+        name: name,
+        description: description
+      })
+    end  
   end
 end    
