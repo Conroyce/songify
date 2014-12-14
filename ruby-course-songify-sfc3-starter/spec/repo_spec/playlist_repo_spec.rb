@@ -31,5 +31,14 @@ describe Songify::Repos::Playlists do
       expect(play).to be_a(Songify::Playlist)
       expect(play.name).to eq('playlist_best')
     end 
-  end  
+  end 
+
+  describe 'find_by' do
+    it 'finds a playlist by name or description' do
+      playlist.create({
+        name:'playlist-good',
+        description: 'good playlist'
+      })
+    end  
+  end 
 end  

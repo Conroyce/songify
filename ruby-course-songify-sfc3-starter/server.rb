@@ -32,6 +32,7 @@ get '/albums/:id' do
 end 
 
 get '/playlists' do
+  @playlist_id = params[:id]
   erb :playlist
 end  
 
@@ -49,6 +50,11 @@ post '/' do
     link: link
   })   
 end 
+
+post '/playlists' do
+  song_id = params[:id]
+  album_id = params[:album_id]
+end  
 
 post '/albums/:id' do
   puts params

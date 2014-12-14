@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Songify</title>
+  <link rel="stylesheet" href="css/main.css">
   <style>
     input{
       margin-top: 7px;
@@ -12,13 +13,16 @@
   <h1><a href="/albums"><%= @message %></a></h1>
   <h1><a href="/playlists">Playlists</a></h1>
   <div>
-      <h3><%  %></h3>
-    <ul>
+     
+    
     <% @songs.each do |song| %>
-      <li><%= song.title %></li>
-      <li><%= song.artist %></li>
-      <li><%= song.link %></li>
-    <% end %>
+    <form action="/playlists" method="POST">
+      <p><%= song.title %></p><input type="submit" name="<%= song.id %> <%= song.album_id %>  " value="Add to Playlist"> 
+      <p><%= song.artist %></p>
+      <p><%= song.link %></p>
+    </form> 
+    <% end %> 
+    
     <form action="/albums/<%= @album_page %>" method="POST">
       <label for="title">Song Name</label>
       <input type="text" name="title" id="title" required placeholder="Enter Title"><br>

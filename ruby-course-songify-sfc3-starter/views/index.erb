@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Songify</title>
-  <link rel="stylesheet" href="../public/css/main.css">
+  <link rel="stylesheet" href="css/main.css">
   <style>
     input{
       margin-top: 7px;
@@ -43,7 +43,7 @@
         <input type="submit">
       </form>
       <% @albums_arr.each do |part| %>
-          <h3><a href="/albums/<%= part.id %>"><%= part.title %></h3>
+          <h3><a href="/albums/<%= part.id %>"><%= part.title %></a></h3><a href="/playlists"><input type="button" value="Add to Playlist"></a>  
           <ul>
             <li><a href="album.erb"><%= part.year %></a></li>
             <li><a href="album.erb"><%= part.genre %></a></li>
